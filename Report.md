@@ -2,9 +2,9 @@
 
 ## Analysis Overview 
 
-This analysis aims to evaluate the validity of two machine learning models created which can classify a 'unseen' loan as healthy or high-risk.
+This analysis aims to evaluate the reliability of two machine learning models created which can classify a 'unseen' loan as being healthy or high-risk.
 
-The supervised machine learning algorithms produced were trained on labeled prehistoric lending data, below are a list of features that were included in this data:
+The supervised machine learning models produced were trained on labeled prehistoric lending data, below are a list of features that were included in this training data:
 - Loan size
 - Interest rate
 - Borrower's total debt
@@ -13,13 +13,15 @@ The supervised machine learning algorithms produced were trained on labeled preh
 - Number of accounts
 - Derogatory marks
 
-The model observed the above loan features against the loan status (healthy or high risk) they were associated with. The algorithms now have the ability to classify a unseen loan as healthy or high risk loan status if it provided with the associated features of the loan. However, a model of this importance cannot be implemented without being throughrougly evaluated and validated, therefore, this analysis will review the two machine learning models created.
+The models observed the above loan features against the loan status (healthy or high risk) they were associated with. 
 
-Within the lending data, there were 75,036 loans labelled as being healthy, and 2,500 as being high-risk. Based on this dataset alone, the classes used to train the first model were quite imbalanced. This could potentially cause a model bias towards the healthy loans which means the model may not be as good at generalising, especially for high-risk loans. However, the second algorithm produced addresses this imbalance to observe it's affect of the model's performance. 
+The models now have the ability to classify a unseen loan as healthy or high risk if it provided with the associated features of the loan. However, a model of this importance cannot be implemented without being throughrougly evaluated and validated, therefore, this analysis will review the two machine learning models created.
+
+The lending data containd 75,036 healthy loans and 2,500 high-risk loans. Within the original training data, there were 56,277 loans labelled as being healthy, and 1,875 as being high-risk. Based on this dataset alone, the classes used to train the first model were quite imbalanced. This could potentially cause a model bias towards the healthy loans which means the model may not be as good at generalising, especially for high-risk loans as they are the minority. However, the second algorithm produced addresses this imbalance to observe it's affect of the model's performance. 
 
 Logistic regression was used to develop the classifier model, it is a linear statistical model which helps predict a categorical outcome. Each data point receives a probability of being a healthy or high-risk loan. If the probability is above a certain threshold, that data point is predicted to be a high-risk loan and any below the thesehold would be considered a healthy loan. 
 
-Whilst developing this machine learning algorithms, logistic regress several stages were followed:
+Whilst developing this machine learning algorithm, several stages were followed:
 1) Preprocessing
 During preprocessing, the lending dataset was reviewed for any missing values. Once the dataset was confirmed to be 'cleaned', it was loaded in and the features and target variable were segregated. The feature and target variable values were then split into a training set and a testing set whereby the class proportions were maintained, this was done so that once the model was trained, it's performance could be evaluated against unseen loans to see how well it generalises. 
 2) Training
@@ -27,7 +29,7 @@ A large subset of the labelled training data was used to teach the logistic regr
 3) Validating
 The remainder of the lending data which was split into the test set was then used to help validate the model to see how well the model is able to predict the loan status of loans which were unfamilar to it. The evaluation of this is outlined in the results section below.
 4) Predicting
-After the results evaluation and further piloting has concluded, the model will have been validated and can be used to predict the loan status of a loan accuractly. 
+After the results evaluation and further piloting has concluded, the model will have been validated and can be used to predict the loan status of a loan accurately. 
 
 As previosuly mentioned, during the first model, the target variables were unbalanced. Therefore, the same steps were applied to the second model but with with one additional step during preprocessing. The training data used was resampled using a random over sampler model which balanced out the class observations.
 
@@ -81,10 +83,10 @@ Accuracy:
 - The balanced accuracy score was 1.00 (2.s.f), or 100% (2.s.f).
 - This score indicates that the model is always accurate at classifying whether an unseen loan is healthy or high risk.
 - By using the 'balanced' score, the model has been proven to be accurate not only at predicting the majority class (healthy loans) but also the minority class (high-risk loans).
-- Overall, this score provides a confidence in this model's ability to generalise. 
+- Overall, this score provides confidence in this model's ability to generalise. 
 
 Precision:
-[Precision of remained the same as model 1]
+[Precision remained the same as model 1]
 - To reiterate, precision measures the accuracy of positive predictions amongst all predicted positive observations.
 - The classification report returned a precision of 1.00 for healthy loans, this indicates that all positive predictions for healthy loans were accurate for the test data the model was provided with. 
 - The classification report returned a precision of 0.87 for high risk loans, this is still fairly high but the model has classified 13% of the predicted high-risk loans incorrectly. This means 13% of the high-risk loans classifications were actually healthy but the model classed them as high-risk (false positives).
@@ -106,7 +108,7 @@ F1-Score:
 
 From the two classifier models evaluated, model 2 appears to perform better overall. This is because it classified 54 less loan statuses incorrectly compared to model 1. This caused the overall F1-score to increase from 0.99 (in model 1) to 1.00 (in model 2) due to model 2's increased performance in deflecting false negatives whereby actual high-risk loans are never classified as being healthy which is ideal for the company and their forecasts. 
 
-However, it should be made clear that false positives are equally as important to deflect, if not more so in this context. This is because if a loan is classified as high-risk but is actually healthy, it has significant impacts to the indiviudal who is taking out this loan aswell as the peer to peer lending services company. The individual's credit score rating could potentially be impacted by this misclassification which could prevent them from taking out another loan or negatively impact the terms they are offered as they are considered 'high-risk', this can impact their life decisions which are often the underlying reason for taking out a loan such as a mortgage or business endevor. For this very reason the lending service may also be negitively impacted as they individual may move to a different service due to their treatment or more importantly may not comform to industry regulations which can have graver financial/ legal impacts for the peer to peer lending services company.   
+However, it should be made clear that false positives are equally as important to deflect, if not more so in this context. This is because if a loan is classified as high-risk but is actually healthy, it has significant impacts to the indiviudal who is taking out this loan aswell as the peer to peer lending services company. The individual's credit score rating could potentially be impacted by this misclassification which could prevent them from taking out another loan or negatively impact the terms they are offered as they are considered 'high-risk', this can impact their life decisions which are often the underlying reason for taking out a loan such as a mortgage or business endevor. For this very reason the lending service may also be negatively impacted as the individual may move to a different service due to their treatment or more importantly, the peer to peer lending services company may not comform to industry regulations which can have graver financial/ legal impacts for them.   
 
 In another context, model 2's performance improvement from model 1 could be enough to put this model forward into practice as it is very accurate. However, as the importance of the classification has the ability to impact a individual and their finances, no model is recommended at this stage. Model 2 predicted 11 more false positives in comparison with model 1 which displays more due dilligence is possible whilst training the model. The recommendation is that model 2 is further explored to reduce the false positives before it can be put into practice. 
 
