@@ -33,11 +33,38 @@ As previosuly mentioned, during the first model, the target variables were unbal
 
 ## Results
 
-Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all machine learning models.
-
 * Machine Learning Model 1:
-  * Description of Model 1 Accuracy, Precision, and Recall scores.
 
+Confusion Matrix:
+- Of the 19,384 total loans predicted using the test set:
+- 80 healthy loans were incorrectly classed as high risk (false positives).
+- 67 high-risk loans were incorrectly classed as healthy (false negatives).
+- The remaining 19,237 loans were correctly classified.
+
+Accuracy:
+- The balanced accuracy score helps to display how often the model has correctly predicted the loan status for both healthy and high-risk loans.
+- The balanced accuracy score was 0.94 (2.s.f), or 94% (2.s.f).
+- This score indicates that the model is highly accurate at classifying whether an unseen loan is healthy or high risk as it is quite close to  1.00.
+- By using the 'balanced' score, the model has been proven to be accurate not only at predicting the majority class (healthy loans) but also the minority class (high-risk loans).
+- It's important to note that this score suggests that 6 out of every 100 loans have been incorrectly classified. Further analysis is needed to understand the impact of these misclassifications.
+- Overall, this score provides a positive indication for this model's ability to generalise. 
+
+Precision:
+- Precision measures the accuracy of positive predictions amongst all predicted positive observations.
+- The classification report returned a precision of 1.00 for healthy loans, this indicates that all positive predictions for healthy loans were accurate for the test data the model was provided with. 
+- The classification report returned a precision of 0.87 for high risk loans, this is still fairly high but the model has classified 13% of the predicted high-risk loans incorrectly. This means 13% of the high-risk loans classifications were actually healthy but the model classed them as high-risk (false positives).
+- These findings indicate that the model could be piloted but it would need to undergo further training to increase the precision of classifying high risk loans correctly so that false positives are kept minimal.
+
+Recall:
+- Recall measures the accuracy of positive predictions amongst all actual positive observations.
+- The classification report returned a recall of 1.00 for healthy loans, this indicates that all positive predictions for healthy loans were accurate for the test data the model was provided with. 
+- The classification report returned a recall of 0.89 for high risk loans, this is still fairly high but the model has classified 11% of the actual high-risk loans incorrectly. This means 11% of the actual high-risk loans classifications were classified as healthy (false negatives).
+- These findings indicate that the model could be piloted but it would need to undergo further training to increase the recall of classifying high risk loans correctly so that false negatives are kept minimal.
+
+F1-Score:
+- The combined accuracy and precision is conveyed in the f1-score, this score helps evaluate the model's ability to keep false positives and false negatives minimal. 
+- Combined, the healthy loans and high risk loans had a f1-score of 0.99 which does an excellent job at predicting loan statuses. 
+- However, the f1-score of high-risk loans has slightly weighed down this overall rating, the high-risk obtained a f1-score of 0.88, this could be improved so that high-risk loans avoid false positive and negatives.
 
 
 * Machine Learning Model 2:
